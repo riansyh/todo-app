@@ -1,38 +1,213 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --blue: #607ef5;
+  --white: #f5f7ff;
+  --red: #fc7a7a;
+  --disable: #f3f3f3;
+}
+
+body {
+  font-family: 'Mulish', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  background-color: var(--white);
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.header {
+  padding: 24px;
+  background-color: var(--blue);
   text-align: center;
+  color: #fefefe;
+  border-radius: 0 0 15px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header h1 {
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 24px;
+  position: relative;
+  max-width: 1200px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.add-task {
+  border-radius: 12px;
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 24px 16px;
+  position: sticky;
+  top: 140px;
   display: flex;
-  flex-direction: column;
+  z-index: 2;
+  box-shadow: 0px 11px 13px -6px rgba(207, 216, 252, 0.3);
+}
+
+.add-task input {
+  margin-right: 12px;
+  flex-grow: 8;
+  border: 2px solid #607ef5;
+  border-radius: 6px;
+  padding: 12px 16px;
+  transition: 300ms ease-in;
+}
+
+.add-task input:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px #cfd8fc;
+  border-radius: 6px;
+  transition: 300ms ease-out;
+}
+
+.add-task button {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  background-color: #607ef5;
+  font-weight: 700;
+  color: #fefefe;
+  cursor: pointer;
+  transition: 300ms ease-in;
+}
+
+.add-task button:hover {
+  background-color: #4a66d4;
+  transition: 300ms ease-out;
+}
+
+.add-task button:active {
+  box-shadow: 0px 0px 0px 3px #cfd8fc;
+  transition: 300ms ease-out;
+}
+
+.task-list {
+  margin: 40px auto;
+}
+
+.task-list h1 {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.task-item {
+  min-height: 40px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin: 12px auto;
+  cursor: pointer;
+  box-shadow: 0px 11px 13px -6px rgba(207, 216, 252, 0.3);
+  background-color: #fefefe;
+  transition: 300ms ease-in;
 }
 
-.App-link {
-  color: #61dafb;
+.finished {
+  background-color: var(--disable);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.task-item:hover {
+  transition: 300ms ease-in;
+  background-color: var(--disable);
+}
+
+.finished .radio__label {
+  text-decoration: line-through;
+}
+
+.task-item .detail {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.task-item .detail p {
+  font-weight: 600;
+}
+
+.trash {
+  cursor: pointer;
+}
+
+/* Check box */
+.checkbox {
+  display: grid;
+  align-items: center;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.5em;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.radio__label {
+  color: #111111;
+}
+
+.checkbox--disabled {
+  color: var(--disabled);
+}
+
+.checkbox__control {
+  display: inline-grid;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 0.1em solid currentColor;
+  transition: 300ms ease-in;
+}
+
+.checkbox__control svg {
+  transition: transform 0.1s ease-in 25ms;
+  transform: scale(0);
+  transform-origin: bottom left;
+}
+
+.checkbox__input {
+  display: grid;
+  grid-template-areas: 'checkbox';
+}
+
+.checkbox__input > * {
+  grid-area: checkbox;
+}
+
+.checkbox__input input {
+  opacity: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.checkbox__input input:hover + .checkbox__control {
+  box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
+  transition: 300ms ease-in;
+}
+
+.finished .checkbox__input .checkbox__control svg {
+  transform: scale(1);
 }
