@@ -20,10 +20,10 @@ function Main() {
 
     return (
         <div className="main">
-            <div className="add-task">
+            <form className="add-task" onSubmit={(e) => e.preventDefault()}>
                 <input type="text" placeholder="Tambahkan tugas baru" value={newTask} onChange={handleChange} />
-                <button onClick={addTask} >Add</button>
-            </div>
+                <button type="submit" onClick={addTask} >Add</button>
+            </form>
             <div className="task-list">
                 <h1>
                     {tasksNotDone.length 
