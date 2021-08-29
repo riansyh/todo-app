@@ -1,31 +1,8 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Main from './components/Main';
-
-const initialState = [];
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD':
-      state.push({
-        key: state.length,
-        taskName: action.value,
-        isFinished: false,
-      });
-      return state;
-
-    case 'CHECK':
-      state[action.key].isFinished = !state[action.key].isFinished;
-      return [...state];
-
-    case 'DELETE':
-      break;
-
-    default:
-      return state;
-  }
-};
+import { initialState, reducer } from './utils/reducer';
 
 export const TasksContext = React.createContext();
 

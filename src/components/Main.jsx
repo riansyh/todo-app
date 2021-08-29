@@ -15,6 +15,9 @@ function Main() {
         setNewTask('')
     }
 
+    const tasksDone = tasksContext.state.filter(task => task.isFinished === true)
+    const tasksNotDone = tasksContext.state.filter(task => task.isFinished === false)
+
     return (
         <div className="main">
             <div className="add-task">
@@ -22,26 +25,15 @@ function Main() {
                 <button onClick={addTask} >Add</button>
             </div>
             <div className="task-list">
-                <h1>Kamu mempunyai {tasksContext.state.length} tugas</h1>
-
-                {tasksContext.state.map(task => {
-                    if(!task.isFinished) {
-                        return <Task key={task.key} number={task.key} status="task-item" name={task.taskName} />
-                    } else {
-                        return null
+                <h1>
+                    {tasksNotDone.length 
+                     ? `Kamu mempunyai ${tasksNotDone.length} tugas` 
+                     :'Kamu belum mempunyai tugas untuk dikerjakan'
                     }
-                }
-                )}
+                </h1>
 
-                {tasksContext.state.map(task => {
-                    if(task.isFinished) {
-                      return <Task key={task.key} number={task.key} status="task-item finished" name={task.taskName} />  
-                    } else {
-                        return null
-                    }
-                }
-                )}
-
+                {tasksNotDone.map(task => <Task key={task.key} number={task.key} status="task-item" name={task.taskName} /> )}
+                {tasksDone.map(task => <Task key={task.key} number={task.key} status="task-item finished" name={task.taskName} /> )}
             </div>
         </div>
     )

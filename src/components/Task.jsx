@@ -10,8 +10,8 @@ function Task({status, name, number}) {
     }
 
     return (
-        <div className={status} onClick={() => checkHandler(number)}>
-            <div className="detail">
+        <div className={status}>
+            <div className="detail" onClick={() => checkHandler(number)}>
                 <label className="checkbox">
                 <span className="checkbox__input">
                     <input type="checkbox" name="checkbox"/>
