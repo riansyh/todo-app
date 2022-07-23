@@ -1,22 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Task from "./Task";
-import { TasksContext } from "../App";
+import { useDispatch, useSelector } from "react-redux";
+import { add } from "./../feature/todo/todoSlice";
 
-function Main() {
+function MainRTK() {
     const [newTask, setNewTask] = useState("");
-    const tasksContext = useContext(TasksContext);
+    const task = useSelector((state) => state.todo.value);
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setNewTask(e.target.value);
     };
 
     const addTask = () => {
-        tasksContext.dispatch({ type: "ADD", value: newTask });
+        dispatch(add(newTask));
         setNewTask("");
     };
 
-    const tasksDone = tasksContext.state.filter((task) => task.isFinished === true);
-    const tasksNotDone = tasksContext.state.filter((task) => task.isFinished === false);
+    const tasksDone = task.filter((task) => task.isFinished === true);
+    const tasksNotDone = task.filter((task) => task.isFinished === false);
 
     return (
         <div className="main">
@@ -58,4 +60,4 @@ function Main() {
         </div>
     );
 }
-export default Main;
+export default MainRTK;
